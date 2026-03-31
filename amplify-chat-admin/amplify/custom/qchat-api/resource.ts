@@ -336,7 +336,7 @@ export class QChatApi extends Construct {
         entry: url.fileURLToPath(
           new URL("handlers/executeCommand.ts", import.meta.url),
         ),
-        runtime: Runtime.NODEJS_20_X,
+        runtime: Runtime.NODEJS_22_X,
         role: lambdaCreateQAppRole,
         timeout: Duration.minutes(1),
         environment: { JWT_SECRET: _config.JWT_SECRET, DDBTable_URLShortener: URLShortenerTable.tableName, DDBTable_ConversationsList: conversationListTable.tableName, conversationDDBTableName: conversationTable.tableName, KENDRA_INDEXID: kendraIndex? kendraIndex.attrId: _config.KENDRA_INDEXID, CHAT_PROD_API: _config.CHAT_PROD_API },
@@ -384,7 +384,7 @@ export class QChatApi extends Construct {
       entry: url.fileURLToPath(
         new URL("handlers/chatBRResponseAPIHandler.ts", import.meta.url),
       ),
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       environment: { JWT_SECRET: _config.JWT_SECRET, conversationDDBTableName: conversationTable.tableName, DDBTable_ConversationSummary: conversationListTable.tableName, KENDRA_INDEXID: kendraIndex? kendraIndex.attrId: _config.KENDRA_INDEXID },
       role: lambdachatBRrole,
       timeout: Duration.minutes(5),
@@ -426,7 +426,7 @@ export class QChatApi extends Construct {
       entry: url.fileURLToPath(
         new URL("handlers/chatBRLikeDislikeAPIHandler.ts", import.meta.url),
       ),
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       environment: { JWT_SECRET: _config.JWT_SECRET, conversationDDBTableName: conversationTable.tableName },
       role: lambdachatBRLikeDislikerole,
       timeout: Duration.minutes(5),
@@ -478,7 +478,7 @@ export class QChatApi extends Construct {
       entry: url.fileURLToPath(
         new URL("handlers/urlShortener.ts", import.meta.url),
       ),
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       environment: { DDBTable_URLShortener: URLShortenerTable.tableName },
       role: lambdaURLShorternerrole,
       timeout: Duration.minutes(5),
@@ -519,7 +519,7 @@ export class QChatApi extends Construct {
       entry: url.fileURLToPath(
         new URL("handlers/createKendraDS.ts", import.meta.url),
       ),
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       role: lambdaCreateBRAppRole,
       timeout: Duration.minutes(5),
       environment: { JWT_SECRET: _config.JWT_SECRET, DDBTable_URLShortener: URLShortenerTable.tableName, API_Endpoint: httpApi.apiEndpoint, CHAT_PROD_API: _config.CHAT_PROD_API, KENDRA_INDEXID: kendraIndex? kendraIndex.attrId: _config.KENDRA_INDEXID, KENDRA_DATASOURCE_ROLE: kendraDataSourceRole.roleArn },
@@ -591,7 +591,7 @@ export class QChatApi extends Construct {
           codeConfiguration: {
             configurationSource: 'API',
             codeConfigurationValues: {
-              runtime: 'NODEJS_20',
+              runtime: 'NODEJS_22',
               buildCommand: 'npm install',
               startCommand: 'npm start',
               port: '8080',
